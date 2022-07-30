@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public class Main implements Runnable {
+public class A implements Runnable {
     public static void main(String[] args) {
         new Thread(null, new Main(), "", Runtime.getRuntime().maxMemory()).start();
     }
