@@ -9,11 +9,59 @@ public class Main implements Runnable {
         new Thread(null, new Main(), "", Runtime.getRuntime().maxMemory()).start();
     }
 
+    static boolean isPalindrome(char[] s) {
+        int n = s.length;
+        for (int i = 0; i < n / 2; i++) {
+            if (s[i] != s[n - i - 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void replaceArr(char[] s) {
+        int n = s.length;
+        for (int i = 0; i < n / 2; i++) {
+            if (s[i] != s[n - i - 1]) {
+                if (s[i] == 'A') {
+                    if (i != 0 && s[i - 1] == 'A') {
+                        s[i] = 'B';
+                    } else if (i != 0) {
+                        s[n - i - 1] = 'A';
+                    }
+                } else {
+                    s[i] = 'A';
+                    s[i + 1] = 'B';
+                }
+            }
+        }
+    }
+
     public void run() {
         FastScanner sc = new FastScanner();
         PrintWriter pw = new PrintWriter(System.out);
 
-        pw.println("text");
+        int N = sc.nextInt();
+        char[] S = new char[N];
+        S = sc.next().toCharArray();
+
+        char[] t1 = new char[N];
+        char[] t2 = new char[N];
+
+        for (int i = 0; i < S.length; i++) {
+            t1[i] = S[i];
+            t2[i] = S[i];
+        }
+
+        replaceArr(S);
+
+        boolean ans = isPalindrome(S);
+
+        if (ans) {
+            pw.println("Yes");
+        } else {
+            pw.println("No");
+        }
         pw.close();
     }
 
