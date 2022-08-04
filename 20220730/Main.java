@@ -37,6 +37,7 @@ public class Main implements Runnable {
         }
     }
 
+    // もっと簡単に考えてみよう
     public void run() {
         FastScanner sc = new FastScanner();
         PrintWriter pw = new PrintWriter(System.out);
