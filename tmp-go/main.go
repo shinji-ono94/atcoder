@@ -53,26 +53,20 @@ func main() {
 }
 func solve() {
 	n := iost.GetNextInt()
-	cc := make([]int, n)
-	xx := make([]int, n)
+	text := iost.Text()
+
+	//slice
+	m := []int{}
 	for i := 0; i < n; i++ {
-		cc[i] = iost.GetNextInt() - 1
+		m = append(m, iost.GetNextInt())
 	}
-	for i := 0; i < n; i++ {
-		xx[i] = iost.GetNextInt()
-	}
-	ccc := make([][]int, n)
-	for i := 0; i < n; i++ {
-		ccc[cc[i]] = append(ccc[cc[i]], xx[i])
-	}
-	ans := rev(xx)
-	for i := 0; i < n; i++ {
-		if len(ccc[i]) == 0 {
-			continue
-		}
-		ans -= rev(ccc[i])
-	}
-	iost.Println(ans)
+
+	//map
+	mp := map[int]int{}
+	mp[1] = 10
+
+	iost.Println(text)
+	iost.Println(mp[1])
 }
 func rev(xx []int) int {
 	n := len(xx)
