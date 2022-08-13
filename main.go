@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"sort"
 	"strconv"
 )
 
@@ -52,53 +51,39 @@ func main() {
 	solve()
 }
 func solve() {
-	n := iost.GetNextInt()
-	cc := make([]int, n)
-	xx := make([]int, n)
-	for i := 0; i < n; i++ {
-		cc[i] = iost.GetNextInt() - 1
+	N := iost.GetNextInt()
+	M := iost.GetNextInt()
+
+	Ni := map[int]int{}
+	for i := 1; i < N+1; i++ {
+		Ni[i] = i
 	}
-	for i := 0; i < n; i++ {
-		xx[i] = iost.GetNextInt()
-	}
-	ccc := make([][]int, n)
-	for i := 0; i < n; i++ {
-		ccc[cc[i]] = append(ccc[cc[i]], xx[i])
-	}
-	ans := rev(xx)
-	for i := 0; i < n; i++ {
-		if len(ccc[i]) == 0 {
-			continue
-		}
-		ans -= rev(ccc[i])
-	}
-	iost.Println(ans)
-}
-func rev(xx []int) int {
-	n := len(xx)
-	ii := make([]int, n)
-	for i := 0; i < n; i++ {
-		ii[i] = i
-	}
-	sort.Slice(ii, func(i, j int) bool {
-		return xx[ii[i]] > xx[ii[j]]
-	})
-	f := NewFenwickTree(make(Bit, n))
-	prev := xx[ii[0]]
-	add := make([]int, 0)
-	ans := 0
-	for i := 0; i < n; i++ {
-		if prev > xx[ii[i]] {
-			for _, v := range add {
-				f.Add(v, 1)
+
+	for {
+		for i := 1; i < N+1; i++ {
+			iost.Printf("%d", Ni[i])
+			if i != N {
+				iost.Printf(" ")
+			} else {
+				iost.Printf("\n")
 			}
-			add = add[:0]
 		}
-		ans += f.Sum(ii[i]).(int)
-		add = append(add, ii[i])
-		prev = xx[ii[i]]
+		if Ni[1] == (M - N + 1) {
+			break
+		}
+		for i := 1; i < N+1; i++ {
+			if Ni[N+1-i] != (M + 1 - i) {
+				Ni[N+1-i]++
+				for l := 1; l < N+1; l++ {
+					if (N + 1 - i + l) > N {
+						break
+					}
+					Ni[N+1-i+l] = (Ni[N+1-i] + l)
+				}
+				break
+			}
+		}
 	}
-	return ans
 }
 
 type Bit []int

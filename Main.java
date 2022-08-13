@@ -4,37 +4,16 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public class F implements Runnable {
+public class Main implements Runnable {
     public static void main(String[] args) {
-        new Thread(null, new Main(), "", Runtime.getRuntime().maxMemory()).start();
-    }
-
-    int o(char c) {
-        return c - 'a';
+        new Thread(null, new main(), "", Runtime.getRuntime().maxMemory()).start();
     }
 
     public void run() {
         FastScanner sc = new FastScanner();
         PrintWriter pw = new PrintWriter(System.out);
 
-        int N = sc.nextInt();
-        int A = sc.nextInt();
-        int B = sc.nextInt();
-
-        int ans = 0;
-
-        for (int i = 1; i <= N; i++) {
-            int sum = 0;
-            int value = i;
-            for (int j = 0; j < 4; j++) {
-                 sum += value % 10;
-                 value /= 10;
-                 if(value==0)break;
-            }
-            if(sum<=B && sum>=A) ans +=i;
-        }
-
-        pw.println(ans);
+        pw.println("text");
         pw.close();
     }
 
@@ -82,11 +61,13 @@ class FastScanner {
             ptr++;
     }
 
+    // 次のByte値を返す。
     public boolean hasNext() {
         skipUnprintable();
         return hasNextByte();
     }
 
+    // 次のStringを返す。
     public String next() {
         if (!hasNext())
             throw new NoSuchElementException();
@@ -99,6 +80,7 @@ class FastScanner {
         return sb.toString();
     }
 
+    // 次のlong値を返す。
     public long nextLong() {
         if (!hasNext())
             throw new NoSuchElementException();
@@ -125,7 +107,53 @@ class FastScanner {
         }
     }
 
+    // 次のint値を返す。
     public int nextInt() {
         return (int) nextLong();
+    }
+
+    // 次のdouble値を返す。
+    public double nextDouble() {
+        return Double.parseDouble(next());
+    }
+
+    // 次のint配列を返す。 読み出し値に対して、dを加算すること可能。
+    public int[] nextIntArray(int n, int d) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextInt() + d;
+        return a;
+    }
+
+    // 次のdouble配列を返す。
+    public double[] nextDoubleArray(int n) {
+        double[] a = new double[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextDouble();
+        return a;
+    }
+
+    // 次のlong配列を返す。
+    public long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextLong();
+        return a;
+    }
+
+    // 次のchar多次元配列を返す。
+    public char[][] nextCharMap(int n, int m) {
+        char[][] map = new char[n][m];
+        for (int i = 0; i < n; i++)
+            map[i] = next().toCharArray();
+        return map;
+    }
+
+    // 次のint多次元配列を返す。
+    public int[][] nextIntMap(int n, int m) {
+        int[][] map = new int[n][m];
+        for (int i = 0; i < n; i++)
+            map[i] = nextIntArray(m, 0);
+        return map;
     }
 }
