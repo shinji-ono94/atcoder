@@ -26,57 +26,12 @@ var in *In
 var out *Out
 
 func calc() {
-	read := func() [][]int {
-		h, w := in.NextInt2()
-		m := NewIntInt(h, w, 0)
-		for i := 0; i < h; i++ {
-			for j := 0; j < w; j++ {
-				m[i][j] = in.NextInt()
-			}
-		}
-		return m
+	N := in.NextInt()
+	arr := []int{}
+	for i := 0; i < N; i++ {
+		arr[i] = in.NextInt()
 	}
-
-	ma := read()
-	mb := read()
-
-	ok := false
-	for p := 0; p < 1<<len(ma); p++ {
-		if popcount(p) != len(mb) {
-			continue
-		}
-
-		for q := 0; q < 1<<len(ma[0]); q++ {
-			if popcount(q) != len(mb[0]) {
-				continue
-			}
-			m := [][]int{}
-			for i, as := range ma {
-				if nthbit(p, i) == 0 {
-					continue
-				}
-				l := []int{}
-				for j, t := range as {
-					if nthbit(q, j) == 1 {
-						l = append(l, t)
-					}
-				}
-				m = append(m, l)
-			}
-			same := true
-			for i, l := range mb {
-				for j, u := range l {
-					if m[i][j] != u {
-						same = false
-					}
-				}
-			}
-			if same {
-				ok = true
-			}
-		}
-	}
-	out.YesNo(ok)
+	out.Println(arr)
 }
 
 func main() {
