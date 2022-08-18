@@ -27,11 +27,20 @@ var out *Out
 
 func calc() {
 	N := in.NextInt()
+
+	// slice
 	arr := []int{}
 	for i := 0; i < N; i++ {
 		arr[i] = in.NextInt()
 	}
 	out.Println(arr)
+
+	// map
+	m := map[int]int{}
+	for i := 0; i < N; i++ {
+		m[i] = in.NextInt()
+	}
+	out.Println(m)
 }
 
 func main() {
