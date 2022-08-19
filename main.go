@@ -41,6 +41,10 @@ func calc() {
 		m[i] = in.NextInt()
 	}
 	out.Println(m)
+
+　　　　　// slice 2次元
+
+       // rune型
 }
 
 func main() {
