@@ -42,9 +42,9 @@ func calc() {
 	}
 	out.Println(m)
 
-　　　　　// slice 2次元
+	// slice 2次元
 
-       // rune型
+	// rune型
 }
 
 func main() {
