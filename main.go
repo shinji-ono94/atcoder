@@ -42,7 +42,9 @@ func calc() {
 	}
 	out.Println(m)
 
-	// slice 2次元
+	// map 2次元
+	m2 := make(map[int]map[int]string)
+	m2[0][0] = "test"
 
 	// rune型
 }
