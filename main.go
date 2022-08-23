@@ -31,7 +31,7 @@ func calc() {
 	// slice
 	arr := []int{}
 	for i := 0; i < N; i++ {
-		arr[i] = in.NextInt()
+		arr = append(arr, in.NextInt())
 	}
 	out.Println(arr)
 
