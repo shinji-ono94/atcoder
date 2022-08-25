@@ -43,8 +43,11 @@ func calc() {
 	out.Println(m)
 
 	// map 2次元
-	m2 := make(map[int]map[int]string)
-	m2[0][0] = "test"
+	m2 := make(map[int]map[int]int)
+	m2[0] = make(map[int]int)
+	for i := 0; i < N; i++ {
+		m2[0][i] = in.NextInt()
+	}
 	out.Println(m2)
 
 	// rune型
