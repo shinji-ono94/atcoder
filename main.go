@@ -45,6 +45,7 @@ func calc() {
 	// map 2次元
 	m2 := make(map[int]map[int]string)
 	m2[0][0] = "test"
+	out.Println(m2)
 
 	// rune型
 }
