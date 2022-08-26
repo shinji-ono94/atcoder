@@ -26,7 +26,7 @@ var in *In
 var out *Out
 
 func calc() {
-	N := in.NextInt()
+	// N := in.NextInt()
 
 	// // slice
 	// arr := []int{}
@@ -56,9 +56,11 @@ func calc() {
 	// 文字列を1文字ずつ配列に格納する。
 	str := in.NextString()
 	chararr := strings.Split(str, "")
+	arr := []string{}
 	for _, str := range chararr {
-		fmt.Printf("[%s]", str)
+		arr = append(arr, str)
 	}
+	out.Println(arr)
 }
 
 func main() {
