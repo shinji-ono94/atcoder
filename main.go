@@ -28,32 +28,37 @@ var out *Out
 func calc() {
 	N := in.NextInt()
 
-	// slice
-	arr := []int{}
-	for i := 0; i < N; i++ {
-		arr = append(arr, in.NextInt())
+	// // slice
+	// arr := []int{}
+	// for i := 0; i < N; i++ {
+	// 	arr = append(arr, in.NextInt())
+	// }
+	// out.Println(arr)
+
+	// // map
+	// m := map[int]int{}
+	// for i := 0; i < N; i++ {
+	// 	m[i] = in.NextInt()
+	// }
+	// out.Println(m)
+
+	// // map 2次元
+	// m2 := make(map[int]map[int]int)
+
+	// for i := 0; i < N; i++ {
+	// 	m2[i] = make(map[int]int)
+	// 	for l := 0; l < N; l++ {
+	// 		m2[i][l] = in.NextInt()
+	// 	}
+	// }
+	// out.Println(m2)
+
+	// 文字列を1文字ずつ配列に格納する。
+	str := in.NextString()
+	chararr := strings.Split(str, "")
+	for _, str := range chararr {
+		fmt.Printf("[%s]", str)
 	}
-	out.Println(arr)
-
-	// map
-	m := map[int]int{}
-	for i := 0; i < N; i++ {
-		m[i] = in.NextInt()
-	}
-	out.Println(m)
-
-	// map 2次元
-	m2 := make(map[int]map[int]int)
-
-	for i := 0; i < N; i++ {
-		m2[i] = make(map[int]int)
-		for l := 0; l < N; l++ {
-			m2[i][l] = in.NextInt()
-		}
-	}
-	out.Println(m2)
-
-	// rune型
 }
 
 func main() {
