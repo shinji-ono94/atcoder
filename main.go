@@ -44,9 +44,12 @@ func calc() {
 
 	// map 2次元
 	m2 := make(map[int]map[int]int)
-	m2[0] = make(map[int]int)
+
 	for i := 0; i < N; i++ {
-		m2[0][i] = in.NextInt()
+		m2[i] = make(map[int]int)
+		for l := 0; l < N; l++ {
+			m2[i][l] = in.NextInt()
+		}
 	}
 	out.Println(m2)
 
