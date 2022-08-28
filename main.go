@@ -466,3 +466,24 @@ func compress(numbers map[int]int) (map[int]int, []int) {
 
 	return numbers, keys
 }
+
+// ==================================================
+// 図形
+// ==================================================
+// 3点の座標から角度を算出します。
+func angle(A []int, B []int, C []int) float64 {
+	ab := []int{}
+	ab = append(ab, B[0]-A[0])
+	ab = append(ab, B[1]-A[1])
+	ac := []int{}
+	ac = append(ac, C[0]-A[0])
+	ac = append(ac, C[1]-A[1])
+
+	abac := ab[0]*ac[0] + ab[1]*ac[1]
+	abn := (ab[0] * ab[0]) + (ab[1] * ab[1])
+	acn := (ac[0] * ac[0]) + (ac[1] * ac[1])
+	radian := math.Acos(float64(abac) / (math.Sqrt(float64(abn) * float64(acn))))
+	angle := radian * 180 / math.Pi
+
+	return angle
+}
