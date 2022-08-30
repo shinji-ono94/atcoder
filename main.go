@@ -53,11 +53,11 @@ func calc() {
 	// }
 	// out.Println(m2)
 
-	// 文字列を1文字ずつ配列に格納する。
+	// 文字列を1文字ずつ配列に格納する
 	str := in.NextString()
 	chararr := strings.Split(str, "")
 	arr := []string{}
-	for _, str := range chararr {
+	for _, str := range chararr { // エラー解消してから関数化
 		arr = append(arr, str)
 	}
 	out.Println(arr)
