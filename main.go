@@ -53,14 +53,9 @@ func calc() {
 	// }
 	// out.Println(m2)
 
-	// 文字列を1文字ずつ配列に格納する
-	str := in.NextString()
-	chararr := strings.Split(str, "")
-	arr := []string{}
-	for _, str := range chararr { // エラー解消してから関数化
-		arr = append(arr, str)
-	}
-	out.Println(arr)
+	// 文字列を1文字ずつsliceに格納する
+	chararr := in.NextOneStrAsArray()
+	out.Println(chararr)
 }
 
 func main() {
@@ -210,6 +205,12 @@ func (in *In) NextFloatAsInt(base int) int {
 	m, _ := strconv.Atoi(s2)
 
 	return n*pow(10, base) + m*pow(10, base-len(s2))
+}
+
+// NextOneStrAsArray は 次の入力を文字列として読み込み、1文字毎に分解し、値を返します。
+func (in *In) NextOneStrAsArray() []string {
+	s := in.NextString()
+	return strings.Split(s, "")
 }
 
 // Println は引数をスペース区切りで出力し、最後に改行を出力します。
