@@ -32,12 +32,9 @@ func calc() {
 	sl := in.NextIntSlice(N)
 	out.Println(sl)
 
-	// // map
-	// m := map[int]int{}
-	// for i := 0; i < N; i++ {
-	// 	m[i] = in.NextInt()
-	// }
-	// out.Println(m)
+	// map
+	mp := in.NextIntMap(N)
+	out.Println(mp)
 
 	// // map 2次元
 	// m2 := make(map[int]map[int]int)
@@ -213,13 +210,13 @@ func (in *In) NextIntSlice(N int) []int {
 	return slice
 }
 
-// NextIntSlice は N回の入力を数値として読み込み、sliceを返します。
-func (in *In) NextIntMap(N int) []int {
-	slice := []int{}
+// NextIntMap は N回の入力を数値として読み込み、mapを返します。
+func (in *In) NextIntMap(N int) map[int]int {
+	m := map[int]int{}
 	for i := 0; i < N; i++ {
-		slice = append(slice, in.NextInt())
+		m[i] = in.NextInt()
 	}
-	return slice
+	return m
 }
 
 // NextOneStrAsArray は 次の入力を文字列として読み込み、1文字毎に分解し、値を返します。
