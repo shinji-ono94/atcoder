@@ -204,8 +204,17 @@ func (in *In) NextFloatAsInt(base int) int {
 	return n*pow(10, base) + m*pow(10, base-len(s2))
 }
 
-// NextOneStrAsArray は 次の入力を文字列として読み込み、1文字毎に分解し、値を返します。
+// NextIntSlice は N回の入力を数値として読み込み、sliceを返します。
 func (in *In) NextIntSlice(N int) []int {
+	slice := []int{}
+	for i := 0; i < N; i++ {
+		slice = append(slice, in.NextInt())
+	}
+	return slice
+}
+
+// NextIntSlice は N回の入力を数値として読み込み、sliceを返します。
+func (in *In) NextIntMap(N int) []int {
 	slice := []int{}
 	for i := 0; i < N; i++ {
 		slice = append(slice, in.NextInt())
