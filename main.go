@@ -26,14 +26,11 @@ var in *In
 var out *Out
 
 func calc() {
-	// N := in.NextInt()
+	N := in.NextInt()
 
-	// // slice
-	// arr := []int{}
-	// for i := 0; i < N; i++ {
-	// 	arr = append(arr, in.NextInt())
-	// }
-	// out.Println(arr)
+	// slice
+	sl := in.NextIntSlice(N)
+	out.Println(sl)
 
 	// // map
 	// m := map[int]int{}
@@ -205,6 +202,15 @@ func (in *In) NextFloatAsInt(base int) int {
 	m, _ := strconv.Atoi(s2)
 
 	return n*pow(10, base) + m*pow(10, base-len(s2))
+}
+
+// NextOneStrAsArray は 次の入力を文字列として読み込み、1文字毎に分解し、値を返します。
+func (in *In) NextIntSlice(N int) []int {
+	slice := []int{}
+	for i := 0; i < N; i++ {
+		slice = append(slice, in.NextInt())
+	}
+	return slice
 }
 
 // NextOneStrAsArray は 次の入力を文字列として読み込み、1文字毎に分解し、値を返します。
