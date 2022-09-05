@@ -36,16 +36,9 @@ func calc() {
 	mp := in.NextIntMap(N)
 	out.Println(mp)
 
-	// // map 2次元
-	// m2 := make(map[int]map[int]int)
-
-	// for i := 0; i < N; i++ {
-	// 	m2[i] = make(map[int]int)
-	// 	for l := 0; l < N; l++ {
-	// 		m2[i][l] = in.NextInt()
-	// 	}
-	// }
-	// out.Println(m2)
+	// map 2次元
+	m2 := in.NextIntMap2d(N, N)
+	out.Println(m2)
 
 	// 文字列を1文字ずつsliceに格納する
 	chararr := in.NextOneStrAsArray()
@@ -215,6 +208,19 @@ func (in *In) NextIntMap(N int) map[int]int {
 	m := map[int]int{}
 	for i := 0; i < N; i++ {
 		m[i] = in.NextInt()
+	}
+	return m
+}
+
+// NextIntMap2d は N * M 回の入力を数値として読み込み、mapを返します。
+func (in *In) NextIntMap2d(N int, M int) map[int]map[int]int {
+	m := make(map[int]map[int]int)
+
+	for i := 0; i < N; i++ {
+		m[i] = make(map[int]int)
+		for l := 0; l < M; l++ {
+			m[i][l] = in.NextInt()
+		}
 	}
 	return m
 }
