@@ -26,22 +26,22 @@ var in *In
 var out *Out
 
 func calc() {
-	N := in.NextInt()
+	N := in.NInt()
 
 	// slice
-	sl := in.NextIntSlice(N)
+	sl := in.NInts(N)
 	out.Println(sl)
 
 	// map
-	mp := in.NextIntMap(N)
+	mp := in.NIntMap(N)
 	out.Println(mp)
 
 	// map 2次元
-	m2 := in.NextIntMap2d(N, N)
+	m2 := in.NIntMap2d(N, N)
 	out.Println(m2)
 
 	// 文字列を1文字ずつsliceに格納する
-	chararr := in.NextOneStrAsArray()
+	chararr := in.NCharAsArray()
 	out.Println(chararr)
 }
 
@@ -61,8 +61,8 @@ func debug(args ...interface{}) {
 // 入出力操作
 // ==================================================
 type In struct {
-	// NextString は 次の入力を文字列として読み込んで返します。
-	NextString func() string
+	// NString は 次の入力を文字列として読み込んで返します。
+	NString func() string
 }
 
 type Out struct {
@@ -104,53 +104,53 @@ func InitIo(buffer bool) (*In, *Out) {
 
 // NextBytes は 次の入力をbyteの配列として読み込んで返します。
 // 遅いから極力使わない。
-func (in *In) NextBytes() []byte {
-	return []byte(in.NextString())
+func (in *In) NBytes() []byte {
+	return []byte(in.NString())
 }
 
 // NextInt は 次の入力を数値として読み込んで返します。
-func (in *In) NextInt() int {
-	i, _ := strconv.Atoi(in.NextString())
+func (in *In) NInt() int {
+	i, _ := strconv.Atoi(in.NString())
 	return i
 }
 
 // NextInt2 は 次の2つの入力を数値として読み込んで返します。
-func (in *In) NextInt2() (int, int) {
-	return in.NextInt(), in.NextInt()
+func (in *In) NInt2() (int, int) {
+	return in.NInt(), in.NInt()
 }
 
 // NextInt2d は 次の2つの入力を数値n1,n2として読み込んで、n1+d1, n2+d2を返します。
-func (in *In) NextInt2d(d1, d2 int) (int, int) {
-	return in.NextInt() + d1, in.NextInt() + d2
+func (in *In) NInt2d(d1, d2 int) (int, int) {
+	return in.NInt() + d1, in.NInt() + d2
 }
 
 // NextInt3 は 次の3つの入力を数値として読み込んで返します。
-func (in *In) NextInt3() (int, int, int) {
-	return in.NextInt(), in.NextInt(), in.NextInt()
+func (in *In) NInt3() (int, int, int) {
+	return in.NInt(), in.NInt(), in.NInt()
 }
 
 // NextInt2d は 次の3つの入力を数値n1,n2,n3として読み込んで、n1+d1, n2+d2, n3+d3を返します。
-func (in *In) NextInt3d(d1, d2, d3 int) (int, int, int) {
-	return in.NextInt() + d1, in.NextInt() + d2, in.NextInt() + d3
+func (in *In) NInt3d(d1, d2, d3 int) (int, int, int) {
+	return in.NInt() + d1, in.NInt() + d2, in.NInt() + d3
 }
 
 // NextInt4 は 次の4つの入力を数値として読み込んで返します。
-func (in *In) NextInt4() (int, int, int, int) {
-	return in.NextInt(), in.NextInt(), in.NextInt(), in.NextInt()
+func (in *In) NInt4() (int, int, int, int) {
+	return in.NInt(), in.NInt(), in.NInt(), in.NInt()
 }
 
 // NextInts は 次のn個の入力を数値として読み込んで、配列として返します。
-func (in *In) NextInts(n int) sort.IntSlice {
+func (in *In) NInts(n int) sort.IntSlice {
 	a := make([]int, n)
 	for i := 0; i < n; i++ {
-		a[i] = in.NextInt()
+		a[i] = in.NInt()
 	}
 	return sort.IntSlice(a)
 }
 
 // NextLongIntAsArray は 次の入力を数値として読み込み、各桁を要素とした配列を返します。
-func (in *In) NextLongIntAsArray() []int {
-	s := in.NextString()
+func (in *In) NLongIntAsArray() []int {
+	s := in.NString()
 	l := len(s)
 	arr := make([]int, l)
 	for i := 0; i < l; i++ {
@@ -161,18 +161,18 @@ func (in *In) NextLongIntAsArray() []int {
 }
 
 // NextFloat は 次の入力を実数値として読み込み、値を返します。
-func (in *In) NextFloat() float64 {
-	f, _ := strconv.ParseFloat(in.NextString(), 64)
+func (in *In) NFloat() float64 {
+	f, _ := strconv.ParseFloat(in.NString(), 64)
 	return f
 }
 
 // NextFloatAsInt は次の入力を実数rとして読み込み、r * 10^base の値を返します。
-func (in *In) NextFloatAsInt(base int) int {
+func (in *In) NFloatAsInt(base int) int {
 	if base%10 == 0 {
 		panic("baseは小数点の最大桁数を指定する")
 	}
 
-	s := in.NextString()
+	s := in.NString()
 	index := strings.IndexByte(s, '.')
 
 	// 小数点がなければそのまま返す
@@ -194,40 +194,31 @@ func (in *In) NextFloatAsInt(base int) int {
 	return n*pow(10, base) + m*pow(10, base-len(s2))
 }
 
-// NextIntSlice は N回の入力を数値として読み込み、sliceを返します。
-func (in *In) NextIntSlice(N int) []int {
-	slice := []int{}
-	for i := 0; i < N; i++ {
-		slice = append(slice, in.NextInt())
-	}
-	return slice
-}
-
 // NextIntMap は N回の入力を数値として読み込み、mapを返します。
-func (in *In) NextIntMap(N int) map[int]int {
+func (in *In) NIntMap(N int) map[int]int {
 	m := map[int]int{}
 	for i := 0; i < N; i++ {
-		m[i] = in.NextInt()
+		m[i] = in.NInt()
 	}
 	return m
 }
 
 // NextIntMap2d は N * M 回の入力を数値として読み込み、mapを返します。
-func (in *In) NextIntMap2d(N int, M int) map[int]map[int]int {
+func (in *In) NIntMap2d(N int, M int) map[int]map[int]int {
 	m := make(map[int]map[int]int)
 
 	for i := 0; i < N; i++ {
 		m[i] = make(map[int]int)
 		for l := 0; l < M; l++ {
-			m[i][l] = in.NextInt()
+			m[i][l] = in.NInt()
 		}
 	}
 	return m
 }
 
 // NextOneStrAsArray は 次の入力を文字列として読み込み、1文字毎に分解し、値を返します。
-func (in *In) NextOneStrAsArray() []string {
-	s := in.NextString()
+func (in *In) NCharAsArray() []string {
+	s := in.NString()
 	return strings.Split(s, "")
 }
 
