@@ -26,18 +26,18 @@ var in *In
 var out *Out
 
 func calc() {
-	N := in.NInt()
+	N := in.nint()
 
 	// slice
-	sl := in.NInts(N)
+	sl := in.nints(N)
 	out.Println(sl)
 
 	// map
-	mp := in.NIntMap(N)
+	mp := in.nintMap(N)
 	out.Println(mp)
 
 	// map 2次元
-	m2 := in.NIntMap2d(N, N)
+	m2 := in.nintMap2d(N, N)
 	out.Println(m2)
 
 	// 文字列を1文字ずつsliceに格納する
@@ -109,41 +109,41 @@ func (in *In) NBytes() []byte {
 }
 
 // NextInt は 次の入力を数値として読み込んで返します。
-func (in *In) NInt() int {
+func (in *In) nint() int {
 	i, _ := strconv.Atoi(in.NString())
 	return i
 }
 
 // NextInt2 は 次の2つの入力を数値として読み込んで返します。
-func (in *In) NInt2() (int, int) {
-	return in.NInt(), in.NInt()
+func (in *In) nint2() (int, int) {
+	return in.nint(), in.nint()
 }
 
 // NextInt2d は 次の2つの入力を数値n1,n2として読み込んで、n1+d1, n2+d2を返します。
-func (in *In) NInt2d(d1, d2 int) (int, int) {
-	return in.NInt() + d1, in.NInt() + d2
+func (in *In) nint2d(d1, d2 int) (int, int) {
+	return in.nint() + d1, in.nint() + d2
 }
 
 // NextInt3 は 次の3つの入力を数値として読み込んで返します。
-func (in *In) NInt3() (int, int, int) {
-	return in.NInt(), in.NInt(), in.NInt()
+func (in *In) nint3() (int, int, int) {
+	return in.nint(), in.nint(), in.nint()
 }
 
 // NextInt2d は 次の3つの入力を数値n1,n2,n3として読み込んで、n1+d1, n2+d2, n3+d3を返します。
-func (in *In) NInt3d(d1, d2, d3 int) (int, int, int) {
-	return in.NInt() + d1, in.NInt() + d2, in.NInt() + d3
+func (in *In) nint3d(d1, d2, d3 int) (int, int, int) {
+	return in.nint() + d1, in.nint() + d2, in.nint() + d3
 }
 
 // NextInt4 は 次の4つの入力を数値として読み込んで返します。
-func (in *In) NInt4() (int, int, int, int) {
-	return in.NInt(), in.NInt(), in.NInt(), in.NInt()
+func (in *In) nint4() (int, int, int, int) {
+	return in.nint(), in.nint(), in.nint(), in.nint()
 }
 
 // NextInts は 次のn個の入力を数値として読み込んで、配列として返します。
-func (in *In) NInts(n int) sort.IntSlice {
+func (in *In) nints(n int) sort.IntSlice {
 	a := make([]int, n)
 	for i := 0; i < n; i++ {
-		a[i] = in.NInt()
+		a[i] = in.nint()
 	}
 	return sort.IntSlice(a)
 }
@@ -195,22 +195,22 @@ func (in *In) NFloatAsInt(base int) int {
 }
 
 // NextIntMap は N回の入力を数値として読み込み、mapを返します。
-func (in *In) NIntMap(N int) map[int]int {
+func (in *In) nintMap(N int) map[int]int {
 	m := map[int]int{}
 	for i := 0; i < N; i++ {
-		m[i] = in.NInt()
+		m[i] = in.nint()
 	}
 	return m
 }
 
 // NextIntMap2d は N * M 回の入力を数値として読み込み、mapを返します。
-func (in *In) NIntMap2d(N int, M int) map[int]map[int]int {
+func (in *In) nintMap2d(N int, M int) map[int]map[int]int {
 	m := make(map[int]map[int]int)
 
 	for i := 0; i < N; i++ {
 		m[i] = make(map[int]int)
 		for l := 0; l < M; l++ {
-			m[i][l] = in.NInt()
+			m[i][l] = in.nint()
 		}
 	}
 	return m
